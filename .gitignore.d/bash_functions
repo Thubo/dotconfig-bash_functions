@@ -16,6 +16,7 @@
 !/.bash_functions/netstat_free_local_port.sh
 !/.bash_functions/netstat_uses_local_ports.sh
 !/.bash_functions/open.sh
+!/.bash_functions/pretty_output.sh
 !/.bash_functions/server.sh
 !/.bash_functions/sshRemoveKey.sh
 !/.bash_functions/tail_highlight.sh
