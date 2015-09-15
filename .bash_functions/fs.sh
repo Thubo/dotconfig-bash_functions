@@ -2,14 +2,31 @@
 # fs: Determine size of a file or total size of a directory
 fs()
 {
-  if du -b /dev/null > /dev/null 2>&1; then
-    local arg=-sbh
+  if [[ -z "$@" ]]; then
+    du -sh .[^.]* * | sort -h
   else
-    local arg=-sh
+    du -sh -- "$@"
   fi
-  if [[ -n "$@" ]]; then
-    du $arg -- "$@"
+}
+
+#-----------------------------------------------------------------------------#
+# dus: Determine the size of all non-hidden files in the current dir and sort them
+dus()
+{
+  if [[ -z "$@" ]]; then
+    du -sh * | sort -h
   else
-    du $arg .[^.]* *
+    du -sh -- "$@" | sort -h
+  fi
+}
+
+#-----------------------------------------------------------------------------#
+# das: Determine the size of all hidden files in the current dir and sort them
+das()
+{
+  if [[ -z "$@" ]]; then
+    find . -maxdepth 1 -name ".?*" | xargs du -sch | sort -h
+  else
+    du "$@" -sh | sort -h
   fi
 }
