@@ -6,18 +6,25 @@
 #   testConnection    # will return 1 || 0
 testConnection()
 {
-  local tmpReturn=1
-  $(wget --tries=2 --timeout=2 www.google.com -qO- &>/dev/null 2>&1)
+  local target="www.google.com"
 
-  if [ $? -eq 0 ]; then
-    tmpReturn=0
-  else
-    tmpReturn=1
+  if [[ ! -z $1 ]]; then
+    local target=$1
   fi
 
-  if [ "$1" ] && [ $1 -eq 1 ]; then
-    echo $tmpReturn
+  if type curl >/dev/null 2>&1 ; then
+    command="curl -k --silent $target"
+  elif type wget >/dev/null 2>&1 ; then
+    command="wget --no-check-certificate --tries=2 --timeout=2 $target -qO-"
   else
-    return $tmpReturn
+    echo "Neither wget nor curl installed - Exit!"
+    exit 1
   fi
+
+  if $command &>/dev/null 2>&1; then
+    return 0
+  else
+    return 1
+  fi
+
 }
