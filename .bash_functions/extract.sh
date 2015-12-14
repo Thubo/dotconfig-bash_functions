@@ -11,6 +11,13 @@ extract()
       *.bz2)       bunzip2 $1      ;;
       *.rar)       unrar e $1      ;;
       *.gz)        gunzip $1       ;;
+      *.rpm)
+        echo $1
+        mkdir -p $(basename -s .rpm $1) &&
+        cd $(basename -s .rpm $1) &&
+        rpm2cpio ../$1 | cpio -idmv &&
+        cd ..
+      ;;
       *.tar)       tar xvf $1      ;;
       *.tbz2)      tar xvjf $1     ;;
       *.tgz)       tar xvzf $1     ;;
