@@ -6,6 +6,7 @@
 !/.bash_functions/dist-upgrade.sh
 !/.bash_functions/extract.sh
 !/.bash_functions/fs.sh
+!/.bash_functions/full_path.sh
 !/.bash_functions/givedef.sh
 !/.bash_functions/host2ip.sh
 !/.bash_functions/history.sh
