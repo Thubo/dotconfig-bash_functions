@@ -7,7 +7,7 @@ dist-upgrade()
   if [[ $minutes_since_last_update -gt 60 ]]; then
     echo -n "Getting package information..."
     sudo apt-get -qqq update
-    echo "Done!"
+    echo "Done"
   else
     echo "Assuming package information is up-to-date!"
   fi
