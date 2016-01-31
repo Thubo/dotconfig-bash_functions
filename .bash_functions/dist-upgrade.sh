@@ -2,7 +2,11 @@
 # dist-upgrade: update your os
 dist-upgrade()
 {
-  minutes_since_last_update=$((($(date +%s)-$(stat -c %Y /var/lib/apt/periodic/update-success-stamp))/60))
+  if [[ -f /var/lib/apt/periodic/update-success-stamp ]]; then
+    minutes_since_last_update=$((($(date +%s)-$(stat -c %Y /var/lib/apt/periodic/update-success-stamp))/60))
+  else
+    minutes_since_last_update=61
+  fi
 
   if [[ $minutes_since_last_update -gt 60 ]]; then
     echo -n "Getting package information..."
