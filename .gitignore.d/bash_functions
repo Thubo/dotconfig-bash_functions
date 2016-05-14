@@ -4,6 +4,7 @@
 !/.bash_functions/calc.sh
 !/.bash_functions/color.sh
 !/.bash_functions/dist-upgrade.sh
+!/.bash_functions/docker.sh
 !/.bash_functions/extract.sh
 !/.bash_functions/fs.sh
 !/.bash_functions/full_path.sh
